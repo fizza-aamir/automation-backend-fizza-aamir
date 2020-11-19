@@ -1,0 +1,100 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2020-11-18T12:10:24.015Z",
+    "end": "2020-11-18T12:10:26.895Z",
+    "duration": 2880,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "5ab10db6-53d4-45e1-81f3-2a1c7b687bbd",
+      "title": "",
+      "fullFile": "cypress\\integration\\backend-tests-clean.spec.js",
+      "file": "cypress\\integration\\backend-tests-clean.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "96ba22c7-2ac1-4781-852d-357aff97e0f9",
+          "title": "Test Suite Backend Clean Code",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Testcase 3- Create and Edit Room",
+              "fullTitle": "Test Suite Backend Clean Code Testcase 3- Create and Edit Room",
+              "timedOut": null,
+              "duration": 2587,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "roomHelpers.createAndEditRoom(cy);",
+              "err": {},
+              "uuid": "51454afb-55b0-4d24-ab0a-e9c79d6e0cd6",
+              "parentUUID": "96ba22c7-2ac1-4781-852d-357aff97e0f9",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "51454afb-55b0-4d24-ab0a-e9c79d6e0cd6"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2587,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.1"
+    },
+    "marge": {
+      "options": null,
+      "version": "5.1.0"
+    }
+  }
+}
