@@ -47,6 +47,22 @@ function createRoom(cy){
             const responseBodyAsString= JSON.stringify(response.body)
             expect(responseBodyAsString).to.have.string(fakeRoomPayload.number)
         }))
+
+        //for assertion purpose we get all rooms and check the above room is created
+        cy.request({
+            method: 'GET',
+            url: ENDPOINT_GET_ROOMS,
+            headers: {
+                'X-User-Auth':JSON.stringify(Cypress.env().loginToken),
+                "Content-Type": "application/json"
+            }
+        }).then((response => {
+            const responseAllRoomsAsString= JSON.stringify(response.body)
+            cy.log(responseAllRoomsAsString)
+            //expect(responseAllRoomsAsString).to.have.string(fakeRoomPayload)
+            expect(responseAllRoomsAsString).to.have.string(fakeRoomPayload.number)
+            expect(responseAllRoomsAsString).to.have.string(fakeRoomPayload.floor)
+        }))
     }))
     
 }
@@ -95,6 +111,20 @@ function createAndDeleteRoom(cy){
             expect(responseBodyAsString).to.have.string(fakeRoomPayload.number)
 
             deleteLastAfterGet(cy)
+            // for assertion that room is deleted from all rooms
+            cy.request({
+                method: 'GET',
+                url: ENDPOINT_GET_ROOMS,
+                headers: {
+                    'X-User-Auth':JSON.stringify(Cypress.env().loginToken),
+                    "Content-Type": "application/json"
+                }
+            }).then((response => {
+                const responseAllRoomsAsString= JSON.stringify(response.body)
+                cy.log(responseAllRoomsAsString)
+                expect(responseAllRoomsAsString).to.not.have.string(fakeRoomPayload.number)
+               
+            }))
         }))
     }))
 }
@@ -146,6 +176,22 @@ function editAfterGet(cy){
                 expect(responseAsString).to.have.string(editPayload.price)
                 
             }))
+
+            //assertion for get all rooms and find edited price there.
+            //to be done
+            cy.request({
+                method: 'GET',
+                url: ENDPOINT_GET_ROOMS,
+                headers: {
+                    'X-User-Auth':JSON.stringify(Cypress.env().loginToken),
+                    "Content-Type": "application/json"
+                }
+            }).then((response => {
+                const responseAllRoomsAsString= JSON.stringify(response.body)
+                cy.log(responseAllRoomsAsString)
+                expect(responseAllRoomsAsString).to.have.string(editPayload.price)
+               
+            }))
         }))
 }
 function createAndEditRoom(cy){
@@ -168,6 +214,7 @@ function createAndEditRoom(cy){
         }))
     }))
 }
+
 module.exports= {
     createRandomRoomPayload,
     createRoom,

@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+import faker from 'faker'
 
 const ENDPOINT_GET_BILLS = "http://localhost:3000/api/bills"
 const ENDPOINT_POST_BILL = "http://localhost:3000/api/bill/new"
@@ -6,8 +7,9 @@ const ENDPOINT_GET_BILL = "http://localhost:3000/api/bill/"
 
 function createBill(cy){
     cy.authenticateSession().then((response => {
+        let fakePrice=faker.random.number(10000)
         const payload = {
-            "value":"1150",
+            "value":fakePrice,
             "paid":false
         }
         cy.request({
@@ -20,8 +22,21 @@ function createBill(cy){
             body: payload
         }).then((response => {
             cy.log(JSON.stringify(response.body))
-            
+            const responseAsString= JSON.stringify(response.body)
+            expect(responseAsString).to.have.string(payload.value)
         }))
+        //for assertion get all bills
+        cy.request({
+            method: 'GET',
+            url:  ENDPOINT_GET_BILLS, //get all bills
+            headers: {
+             'X-User-Auth':JSON.stringify(Cypress.env().loginToken),
+             "Content-Type": "application/json"
+         }
+         }).then((response => {
+            const responseAsString= JSON.stringify(response.body)
+            expect(responseAsString).to.have.string(payload.paid)
+         }))
     }))
 }
 
@@ -48,6 +63,7 @@ function getAllBillsAndEditLast(cy){
 
             cy.log(editPayload)
             cy.log(JSON.stringify(editPayload))
+
             cy.request({
              method:'PUT',
              url: ENDPOINT_GET_BILL+ lastId, // get one bill
@@ -59,7 +75,11 @@ function getAllBillsAndEditLast(cy){
 
          }).then((response3 => {
              cy.log(JSON.stringify(response3.body))
+             const responseAsString= JSON.stringify(response3.body)
+             expect(responseAsString).to.have.string(editPayload.paid)
          }))
+
+         
          }))
     }))
 }

@@ -3,3 +3,5 @@ backend-tests-fizza/cypress/integration/backend-tests.spec.js
 backend-tests-fizza/cypress/integration/test
 backend-tests-fizza/cypress/integration/backend-tests2.spec.js
 rasi10-hotel-test-vue/node_modules
+backend-tests-fizza/cypress/videos
+backend-tests-fizza/open

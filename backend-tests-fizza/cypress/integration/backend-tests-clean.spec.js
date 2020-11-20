@@ -17,10 +17,10 @@ describe('Test Suite Backend Clean Code', function(){
         reservationHelpers.createAndDeleteReservation(cy)
         cy.logout()
     })
-    // it('not a test', function(){
-    //    // cy.log(JSON.stringify(roomHelpers.createRandomRoomPayload(cy)))
-    //    roomHelpers.createRoom(cy)    
-    // })
+    it('not a test', function(){
+       // cy.log(JSON.stringify(roomHelpers.createRandomRoomPayload(cy)))
+       roomHelpers.createRoom(cy)    
+    })
     it('Testcase 3- Create and Edit Room', function(){
         roomHelpers.createAndEditRoom(cy)
         cy.logout()
